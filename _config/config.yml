@@ -1,0 +1,14 @@
+---
+Name: wellknown-validation-middleware
+After:
+  - requestprocessors
+---
+SilverStripe\Core\Injector\Injector:
+  WellKnownValidationGlobalMiddleware:
+   class: 'LoveDuckie\SilverStripe\WellKnownValidation\WellKnownValidationGlobalMiddleware'
+   properties:
+     Secret: "DIFFERENT-ONE"
+  SilverStripe\Control\Director:
+    properties:
+      Middlewares:
+        WellKnownValidationGlobalMiddleware: %$WellKnownValidationGlobalMiddleware

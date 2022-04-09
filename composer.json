@@ -1,9 +1,25 @@
 {
-    "name": "silverstripe-module/skeleton",
-    "description": "A skeleton for SilverStripe modules.",
+    "name": "loveduckie/silverstripe-well-known-validation",
+    "description": "A SilverStripe module for conveniently allowing administrators to validate the ownership of their website or domain name with other third-party services.",
     "type": "silverstripe-vendormodule",
+    "authors": [
+        {
+            "name": "Luc Shelton",
+            "email": "lucshelton@gmail.com",
+            "homepage": "https://www.lucshelton.com",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "lucshelton@gmail.com",
+        "issues": "https://github.com/loveduckie/silverstripe-well-known-validation/issues"
+    },
     "keywords": [
         "silverstripe",
+        "well-known",
+        "validation",
+        "well-known-validation",
+        "keybase",
         "CMS"
     ],
     "license": "BSD-3-Clause",
@@ -17,8 +33,8 @@
     },
     "autoload": {
         "psr-4": {
-            "SilverStripeModule\\Skeleton\\": "src/",
-            "SilverStripeModule\\Skeleton\\Tests\\": "tests/"
+            "LoveDuckie\\SilverStripe\\WellKnownValidation\\": "src/",
+            "LoveDuckie\\SilverStripe\\WellKnownValidation\\Tests\\": "tests/"
         }
     },
     "extra": {
