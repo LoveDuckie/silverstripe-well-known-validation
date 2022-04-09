@@ -5,10 +5,15 @@ After:
 ---
 SilverStripe\Core\Injector\Injector:
   WellKnownValidationGlobalMiddleware:
-   class: 'LoveDuckie\SilverStripe\WellKnownValidation\WellKnownValidationGlobalMiddleware'
-   properties:
-     Secret: "DIFFERENT-ONE"
+   class: 'LoveDuckie\SilverStripe\WellKnownValidation\Middleware\WellKnownValidationGlobalMiddleware'
   SilverStripe\Control\Director:
     properties:
       Middlewares:
-        WellKnownValidationGlobalMiddleware: %$WellKnownValidationGlobalMiddleware
+        WellKnownValidationGlobalMiddleware: '%$WellKnownValidationGlobalMiddleware'
+
+---
+Name: wellknown-validation-extensions
+---
+SilverStripe\SiteConfig\SiteConfig:
+  extensions:
+    - LoveDuckie\SilverStripe\WellKnownValidation\Extensions\WellKnownValidationConfigurationExtension
