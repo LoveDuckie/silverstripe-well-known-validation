@@ -12,6 +12,7 @@ use SilverStripe\Forms\TextareaField;
 use SilverStripe\SiteConfig\SiteConfig;
 
 use SilverStripe\Forms\RequiredFields;
+use SilverStripe\Forms\CheckboxField;
 
 use Exception;
 
@@ -27,7 +28,8 @@ class DomainWellKnownValidationRule extends DataObject
         'DomainName' => 'Varchar',
         'URLSegment' => 'Varchar',
         'ResponseContentType' => 'Varchar',
-        'ResponseBody' => 'Varchar'
+        'ResponseBody' => 'Varchar',
+        'Enabled' => 'Boolean(true)'
     ];
 
     private static $field_labels = [
@@ -40,7 +42,8 @@ class DomainWellKnownValidationRule extends DataObject
         'Title' => 'Title',
         'DomainName' => 'Domain Name',
         'Description' => 'Description',
-        'URLSegment' => 'URL Segment'
+        'URLSegment' => 'URL Segment',
+        'Enabled' => 'Boolean(true)'
     ];
 
     private static $has_one = [
@@ -70,12 +73,13 @@ class DomainWellKnownValidationRule extends DataObject
         $fields->addFieldsToTab(
             'Root.Main',
             [
-                TextField::create('Title','Title'),
-                TextareaField::create('Description','Description'),
-                TextField::create('DomainName','Domain Name'),
-                TextField::create('URLSegment','URL Segment'),
-                TextField::create('ResponseContentType','Response Content Type'),
-                TextareaField::create('ResponseBody','Response Body')
+                TextField::create('Title', 'Title'),
+                CheckboxField::create('Enabled', 'Enabled'),
+                TextareaField::create('Description', 'Description'),
+                TextField::create('DomainName', 'Domain Name'),
+                TextField::create('URLSegment', 'URL Segment'),
+                TextField::create('ResponseContentType', 'Response Content Type'),
+                TextareaField::create('ResponseBody', 'Response Body')
             ]
         );
         $fields->addFieldToTab(

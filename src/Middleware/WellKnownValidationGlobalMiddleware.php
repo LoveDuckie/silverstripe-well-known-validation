@@ -11,11 +11,12 @@ use SilverStripe\SiteConfig\SiteConfig;
 
 class WellKnownValidationGlobalMiddleware implements HTTPMiddleware
 {
-    private function tryValidationRequest(HTTPRequest $request, HTTPResponse &$response) {
+    private function tryValidationRequest(HTTPRequest $request, HTTPResponse &$response)
+    {
         if (empty($request)) {
             throw new Exception("The request object is invalid or null");
         }
-        
+
         return false;
     }
 
@@ -29,12 +30,18 @@ class WellKnownValidationGlobalMiddleware implements HTTPMiddleware
         }
         $requestUrl = $request->getURL();
         if (str_starts_with($requestUrl, ".well-known")) {
+            $urlSegment = ltrim($requestUrl, ".well-known/");
             $siteConfig = SiteConfig::current_site_config();
             $currentDomainName = $siteConfig->getDomainName();
-            $validationRules = DomainWellKnownValidationRule::get()->filter('DomainName',$currentDomainName);
+            $validationRules = DomainWellKnownValidationRule::get()->filter([
+                'DomainName' => $currentDomainName, 
+                "URLSegment" => $urlSegment
+            ]);
+
             if (empty($validationRules)) {
                 return null;
             }
+            
             // $response = $delegate($request);
             $response = new HTTPResponse();
             $response->setBody('test');

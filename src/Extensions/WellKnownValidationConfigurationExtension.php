@@ -31,7 +31,8 @@ class WellKnownValidationConfigurationExtension extends DataExtension
         $domainValidationRulesDataColumns->setDisplayFields([
             'Title' => 'Title',
             'Description' => 'Description',
-            'DomainName' => 'Domain Name'
+            'DomainName' => 'Domain Name',
+            'URLSegment' => 'URL Segment'
         ]);
 
         $tabsToAdd = [];
