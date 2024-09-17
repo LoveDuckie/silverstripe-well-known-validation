@@ -4,23 +4,21 @@
 
 ## FAQ
 
-This section is for frequently answered questions.
+This section covers frequently asked questions.
 
 ### Q: What does this module do?
 
-This module handles routing for the `/.well-known` endpoint that is used by `RFC 8615` for rendering and displaying descriptive information about a website and its services. This endpoint or route is often used by third-party services (such as [keybase.io](https://keybase.io)) for validating or verifying ownership of a website and domain name.
+This module manages routing for the `/.well-known` endpoint, as specified by RFC 8615, to display descriptive information about a website and its services. The endpoint is commonly used by third-party services (such as [Keybase.io](https://keybase.io)) for domain and website ownership verification.
 
-This module enables you to configure and handle validation requests from your SilverStripe administration panel, without having to directly interact with the web-server by uploading text files for verification purposes.
+With this module, you can handle validation requests directly from your SilverStripe administration panel, eliminating the need to upload verification files manually to your web server.
 
 ### Q: How does it work?
 
-Simply install the module by reading the installation instructions below, and ensure that you have navigated to `/dev/build?flush=all`.
-
-Afterwards you will want to navigate to Configuration panel for your SilverStripe project, and select the **Validation** tab.
+To use the module, follow the installation instructions below and run `/dev/build?flush=all`. Once installed, go to the **Validation** tab in your SilverStripe project's Configuration panel to manage validation settings.
 
 ## Requirements
 
-* **SilverStripe** `^4.0`
+* **SilverStripe** `^4.0 | ^5.0`
 
 ## Installation
 
@@ -46,7 +44,7 @@ Page:
   another_config:
     - item1
     - item2
-  
+
 ```
 
 ### Configuration
@@ -58,13 +56,13 @@ This section outlines any additional configuration that may be required. This mo
 It is assumed that you are serving your SilverStripe project from a NGINX server with a configuration that looks similar to the following.
 
 ```nginx
-map $http_accept $webp_suffix 
+map $http_accept $webp_suffix
 {
   default   "";
   "~*webp"  ".webp";
 }
 
-server 
+server
 {
   listen 80;
   listen [::]:80;
@@ -107,7 +105,7 @@ server
   error_page 502 /assets/error-500.html;
   error_page 503 /assets/error-500.html;
 
-  location ~* /assets/.+\.(?<extension>jpe?g|png|gif|webp)$ 
+  location ~* /assets/.+\.(?<extension>jpe?g|png|gif|webp)$
   {
     gzip_static on;
     gzip_types image/png image/x-icon image/webp image/svg+xml image/jpeg image/gif;
@@ -118,10 +116,10 @@ server
     try_files "${request_uri}.webp" "${request_uri}" $uri =404;
   }
 
-  location ~* ^/assets/.* 
+  location ~* ^/assets/.*
   {
     gzip_static on;
-    gzip_types text/plain text/xml text/css 
+    gzip_types text/plain text/xml text/css
     text/comma-separated-values application/json
     image/png image/jpeg image/x-icon image/webp image/svg+xml image/gif
     text/javascript application/x-javascript application/pdf
@@ -132,10 +130,10 @@ server
     try_files $uri =404;
   }
 
-  location ^~ /resources/ 
+  location ^~ /resources/
   {
     gzip_static on;
-    gzip_types text/plain text/xml text/css 
+    gzip_types text/plain text/xml text/css
     text/comma-separated-values application/json
     image/png image/x-icon image/webp image/svg+xml image/jpeg image/gif
     text/javascript application/x-javascript application/javascript
@@ -148,7 +146,7 @@ server
 
   # location ^~ /assets/ {
   #   gzip_static on;
-  #   gzip_types text/plain text/xml text/css 
+  #   gzip_types text/plain text/xml text/css
   #   text/comma-separated-values application/json
   #   image/png image/jpeg image/x-icon image/webp image/svg+xml image/gif
   #   text/javascript application/x-javascript
@@ -199,10 +197,10 @@ existing issues to ensure yours is unique.
 
 If the issue does look like a new bug:
 
-* Create a new issue
-* Describe the steps required to reproduce your issue, and the expected outcome. Unit tests, screenshots
+1. Create a new issue
+2. Describe the steps required to reproduce your issue, and the expected outcome. Unit tests, screenshots
  and screencasts can help here.
-* Describe your environment as detailed as possible: SilverStripe version, Browser, PHP version,
+3. Describe your environment as detailed as possible: SilverStripe version, Browser, PHP version,
  Operating System, any installed SilverStripe modules.
 
 Please report security issues to the module maintainers directly. Please don't file security issues in the bugtracker.
