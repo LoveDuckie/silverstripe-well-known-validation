@@ -1,6 +1,7 @@
 {
     "name": "loveduckie/silverstripe-well-known-validation",
     "description": "A SilverStripe module for conveniently allowing administrators to validate the ownership of their website or domain name with other third-party services.",
+    "homepage": "https://lucshelton.com",
     "type": "silverstripe-vendormodule",
     "authors": [
         {
